@@ -28,6 +28,6 @@ if __name__=="__main__":
     with open(fp) as f:
         data = f.read()
     data_arr = [i.strip().split(' ') for i in data.split('\n') if i]
-    answer_1 = sum(get_score(arr[0],arr[1]) for arr in data_arr)
+    answer_1 = sum(get_score(*arr) for arr in data_arr)
     print(answer_1)
 
