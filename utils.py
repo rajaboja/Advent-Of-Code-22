@@ -10,3 +10,4 @@ def get_data(url):
         os.makedirs(os.path.dirname(fp), exist_ok=True)
         with open(fp,'wb') as f:
             f.write(data)
+    return fp
