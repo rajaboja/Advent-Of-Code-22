@@ -4,7 +4,9 @@ from urllib.parse import urlsplit
 
 
 def get_data(url):
-    fp = "data/"+ urlsplit(url).path.split('/')[-2]+'.txt'
+    dir_name = os.path.dirname(__file__)+"/data/"
+    fp = dir_name+ urlsplit(url).path.split('/')[-2]+'.txt'
+
     session_id = os.environ.get('SESSION_ID')
     if not os.path.isfile(fp):
         if not session_id:
