@@ -10,18 +10,13 @@ def get_score_and_pos(data):
     cycle_pos = []
     
     for i in data:
-        cycles+=1
-        cycle_pos.append((cycles-1,X))
-        if (cycles-20)%40==0:
-            score+=cycles*X
-
-        if len(i)>1:
-            n = int(i[-1])
+        for _ in range(len(i)):
             cycles+=1
             cycle_pos.append((cycles-1,X))
             if (cycles-20)%40==0:
                 score+=cycles*X
-            X+=n        
+        if len(i)>1:
+            X+=int(i[-1])        
 
     return score, cycle_pos
     
