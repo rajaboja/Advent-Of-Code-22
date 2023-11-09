@@ -5,26 +5,24 @@ url = "https://adventofcode.com/2022/day/10/input"
 
 
 def get_score_and_pos(data):
-    cycles,score,pos=(0,)*3
-    X=[1]
+    cycles,score=0,0
+    X=1
     cycle_pos = []
     
-    for i,j in enumerate(data):
-        pos+=sum(X[i:i+1])
-        if not 'noop' in j:
-            n = j.split(' ')[-1]
-            for _ in range(2):
-                cycles+=1
-                cycle_pos.append((cycles-1,pos))
-                if (cycles-20)%40==0:
-                    score+=cycles*pos
-            X.append(int(n))
-        else:
-            X.append(0)
+    for i in data:
+        cycles+=1
+        cycle_pos.append((cycles-1,X))
+        if (cycles-20)%40==0:
+            score+=cycles*X
+
+        if len(i)>1:
+            n = int(i[-1])
             cycles+=1
-            cycle_pos.append((cycles-1,pos))
+            cycle_pos.append((cycles-1,X))
             if (cycles-20)%40==0:
-                score+=cycles*pos
+                score+=cycles*X
+            X+=n        
+
     return score, cycle_pos
     
 
@@ -33,6 +31,7 @@ if __name__=="__main__":
     fp = get_data(url)
     with open(fp) as f:
         data = f.readlines()
+    data = [i.strip().split(' ') for i in data]
 
     score,cycle_pos = get_score_and_pos(data)
     print(score)
