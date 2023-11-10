@@ -36,11 +36,10 @@ def iteration(data):
 
 if __name__=="__main__":
     fp = get_data(input_url)
-    # fp = "data/10_test.txt"
     with open(fp) as f:
         data = f.read()
     clean_data = clean_up_data(data)
-    total_items = [0]*4
+    total_items = [0]*len(data)
     for _ in range(20):
         clean_data ,n_items= iteration(clean_data)
         total_items = [sum(i) for i in zip(total_items,n_items)]
